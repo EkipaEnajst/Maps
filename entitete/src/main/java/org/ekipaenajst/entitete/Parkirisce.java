@@ -18,10 +18,11 @@ public class Parkirisce implements Serializable {
     private double cenaNocna;
     private String lokacija;
     private Zasedenost zasedenost; //CE BO PROBLEM Z DESERIALIZACIJO DODAJ ĐE ZASEDENOST IN VSE POVEZANO
+    private Oddaljenost oddaljenost;
 
     @Override
     public String toString() {
-        return String.format("Ime: %s Zasedenost: %s", ime, zasedenost);
+        return String.format("Ime: %s Zasedenost: %s Lokacija: %s\n", ime, zasedenost, lokacija);
     }
 
     public int getId() {
@@ -102,5 +103,13 @@ public class Parkirisce implements Serializable {
 
     public void setZasedenost(Zasedenost zasedenost) {
         this.zasedenost = zasedenost;
+    }
+
+    public Oddaljenost getOddaljenost() {
+        return oddaljenost;
+    }
+
+    public void setOddaljenost(Oddaljenost oddaljenost) {
+        this.oddaljenost = oddaljenost;
     }
 }

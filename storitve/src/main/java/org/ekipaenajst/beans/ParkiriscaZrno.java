@@ -12,16 +12,12 @@ import org.ekipaenajst.entitete.Parkirisce;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -57,6 +53,49 @@ public class ParkiriscaZrno {
         externaldataURL = env.get("EXTERNALDATA_URL");//"http://172.17.0.3:8080/v1/parkirisca/";
     }
 
+    public Parkirisce[] getParkirisca(String lokacija) {
+
+        try {
+            Parkirisce[] parkirisca = getParkirisca();
+            LatLng[] locations = new LatLng[parkirisca.length];
+            for (int i = 0; i < parkirisca.length; i++) {
+                System.out.println(parkirisca[i]);
+
+                locations[i] = stringToLatLng(parkirisca[i].getLokacija());
+            }
+
+            DistanceMatrixApiRequest request = DistanceMatrixApi.newRequest(geoApiContext);
+            request.mode(TravelMode.DRIVING);
+            request.origins(stringToLatLng(lokacija));
+            request.destinations(locations);
+
+            DistanceMatrix distanceMatrix = request.await();
+
+            Oddaljenost[] oddaljenosti = new Oddaljenost[distanceMatrix.rows[0].elements.length];
+
+            for (DistanceMatrixRow row : distanceMatrix.rows) {
+                System.out.println(row.elements.length);
+                for (int i = 0; i < row.elements.length; i++) {
+                    Oddaljenost o = new Oddaljenost();
+
+                    Duration dur = row.elements[i].durationInTraffic;
+
+                    if (dur==null) dur = row.elements[i].duration;
+
+                    o.setRazdaljaSekunde(dur.inSeconds);
+                    o.setRazdaljaMetri(row.elements[i].distance.inMeters);
+                    parkirisca[i].setOddaljenost(o);
+                }
+            }
+            return parkirisca;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
     public Oddaljenost[] getOddaljenosti(String lokacija) {
 
         try {
@@ -75,12 +114,24 @@ public class ParkiriscaZrno {
 
             DistanceMatrix distanceMatrix = request.await();
 
+            Oddaljenost[] oddaljenosti = new Oddaljenost[distanceMatrix.rows[0].elements.length];
+
             for (DistanceMatrixRow row : distanceMatrix.rows) {
-                for (DistanceMatrixElement element : row.elements) {
+                System.out.println(row.elements.length);
+                for (int i=0; i < row.elements.length; i++) {
+                    DistanceMatrixElement element = row.elements[i];
                     System.out.println(element);
+                    Oddaljenost o = new Oddaljenost();
+                    Duration dur = row.elements[i].durationInTraffic;
+
+                    if (dur==null) dur = row.elements[i].duration;
+
+                    o.setRazdaljaSekunde(dur.inSeconds);
+                    o.setRazdaljaMetri(row.elements[i].distance.inMeters);
+                    oddaljenosti[i] = o;
                 }
             }
-            return null;
+            return oddaljenosti;
         } catch (Exception e) {
             e.printStackTrace();
         }

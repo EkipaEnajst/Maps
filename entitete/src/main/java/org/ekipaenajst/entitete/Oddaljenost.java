@@ -3,22 +3,27 @@ package org.ekipaenajst.entitete;
 import java.io.Serializable;
 
 public class Oddaljenost implements Serializable {
-    private int razdaljavKM;
-    private int razdaljaSekunde;
+    private Long razdaljaMetri;
+    private Long razdaljaSekunde;
 
-    public int getRazdaljavKM() {
-        return razdaljavKM;
+    @Override
+    public String toString() {
+        return String.format("Razdalja: %s Sekunde: %s\n", razdaljaMetri, razdaljaSekunde);
     }
 
-    public void setRazdaljavKM(int razdaljavKM) {
-        this.razdaljavKM = razdaljavKM;
+    public Long getRazdaljaMetri() {
+        return razdaljaMetri;
     }
 
-    public int getRazdaljaSekunde() {
+    public void setRazdaljaMetri(Long razdaljaMetri) {
+        this.razdaljaMetri = razdaljaMetri;
+    }
+
+    public Long getRazdaljaSekunde() {
         return razdaljaSekunde;
     }
 
-    public void setRazdaljaSekunde(int razdaljaSekunde) {
+    public void setRazdaljaSekunde(Long razdaljaSekunde) {
         this.razdaljaSekunde = razdaljaSekunde;
     }
 }
