@@ -48,6 +48,7 @@
     </dependencies>
 
     <build>
+        <finalName>maps-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>com.kumuluz.ee</groupId>

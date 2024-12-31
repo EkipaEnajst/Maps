@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 @ApplicationScoped // probably... mogoče treba spremeniti
 public class UporabnikiZrno {
 
-    @PersistenceContext(unitName = "accounts-jpa")
+    @PersistenceContext(unitName = "external-jpa")
     private EntityManager em;
 
     private Logger log = Logger.getLogger(UporabnikiZrno.class.getName());

@@ -31,9 +31,6 @@ public class Uporabnik implements Serializable {
     @Column(name = "username")
     private String username;
 
-    @OneToOne
-    @JoinColumn(name = "naslovId")
-    private Naslov naslov;
 
 
 
@@ -84,13 +81,6 @@ public class Uporabnik implements Serializable {
         this.username = username;
     }
 
-    public Naslov getNaslov() {
-        return naslov;
-    }
-
-    public void setNaslov(Naslov naslov) {
-        this.naslov = naslov;
-    }
 
 
 }

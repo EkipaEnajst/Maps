@@ -3,17 +3,10 @@ package org.ekipaenajst.entitete;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name="parkirisce")
-@NamedQueries(value = {
-        @NamedQuery(name = "Parkirisce.findAll", query="SELECT p FROM Parkirisce p"),
-        @NamedQuery(name = "Parkirisce.findByName",
-                query="SELECT p FROM Parkirisce p WHERE p.ime = :imeParam")
-})
+
 public class Parkirisce implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
 
     private String ime;
@@ -25,6 +18,11 @@ public class Parkirisce implements Serializable {
     private double cenaNocna;
     private String lokacija;
     private Zasedenost zasedenost; //CE BO PROBLEM Z DESERIALIZACIJO DODAJ ĐE ZASEDENOST IN VSE POVEZANO
+
+    @Override
+    public String toString() {
+        return String.format("Ime: %s Zasedenost: %s", ime, zasedenost);
+    }
 
     public int getId() {
         return id;

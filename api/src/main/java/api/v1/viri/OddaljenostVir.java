@@ -6,11 +6,9 @@ import org.ekipaenajst.entitete.Oddaljenost;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("oddaljenosti")
 @Produces(MediaType.APPLICATION_JSON)
@@ -21,8 +19,12 @@ public class OddaljenostVir {
     private ParkiriscaZrno parkiriscaZrno;
 
     @GET
-    public Oddaljenost[] getOddaljenosti(String lokacija) {
-        return parkiriscaZrno.getOddaljenosti(lokacija);
+    @Path("/query")
+    public Response getOddaljenosti(@QueryParam("lokacija") String lokacija) {
+        Oddaljenost[] oddaljenosti = parkiriscaZrno.getOddaljenosti(lokacija);
+
+        return Response.status(javax.ws.rs.core.Response.Status.OK).entity(oddaljenosti).build();
+        //return parkiriscaZrno.getOddaljenosti(lokacija);
     }
 
 }

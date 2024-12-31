@@ -63,6 +63,8 @@ public class ParkiriscaZrno {
             Parkirisce[] parkirisca = getParkirisca();
             LatLng[] locations = new LatLng[parkirisca.length];
             for (int i = 0; i < parkirisca.length; i++) {
+                System.out.println(parkirisca[i]);
+
                 locations[i] = stringToLatLng(parkirisca[i].getLokacija());
             }
 
@@ -97,7 +99,6 @@ public class ParkiriscaZrno {
 
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             Parkirisce[] parkirisca = objectMapper.readValue(response.body(), Parkirisce[].class);
-
             return parkirisca;
 
         } catch (Exception e) {

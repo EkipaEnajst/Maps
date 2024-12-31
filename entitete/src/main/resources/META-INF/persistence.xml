@@ -5,13 +5,10 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
-    <persistence-unit name="accounts-jpa" transaction-type="JTA">
+    <persistence-unit name="external-jpa" transaction-type="JTA">
 
-        <jta-data-source>jdbc/AccountsDS</jta-data-source>
+        <jta-data-source>jdbc/ExternalDS</jta-data-source>
 
-        <class>org.ekipaenajst.entitete.Avto</class>
-        <class>org.ekipaenajst.entitete.Naslov</class>
-        <class>org.ekipaenajst.entitete.Uporabnik</class>
 
 
         <properties>
