@@ -35,8 +35,7 @@ public class Uporabnik implements Serializable {
     @JoinColumn(name = "naslovId")
     private Naslov naslov;
 
-    @OneToMany(fetch = FetchType.LAZY/*, mappedBy = "uporabnik"*/)
-    private List<Avto> vozila;
+
 
     public Uporabnik() {}
 

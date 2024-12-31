@@ -1,8 +1,0 @@
-<template unencoded="false">
-  <roots>
-    <root index="0" path="storitve" />
-    <root index="1" path="" />
-    <root index="2" path="api" />
-    <root index="3" path="entitete" />
-  </roots>
-</template>

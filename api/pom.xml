@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.ekipaenajst</groupId>
-        <artifactId>accounts</artifactId>
+        <artifactId>maps</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>maps</artifactId>
+    <artifactId>api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

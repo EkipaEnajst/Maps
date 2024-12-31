@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.ekipaenajst</groupId>
-        <artifactId>accounts</artifactId>
+        <artifactId>maps</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>maps</artifactId>
+    <artifactId>storitve</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -35,6 +35,32 @@
             <groupId>com.kumuluz.ee.rest-client</groupId>
             <artifactId>kumuluzee-rest-client</artifactId>
         </dependency-->
+
+        <dependency>
+            <groupId>com.google.maps</groupId>
+            <artifactId>google-maps-services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.ekipaenajst</groupId>
             <artifactId>entitete</artifactId>
